@@ -3,31 +3,40 @@
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 
-const apiUrl = 'https://app-router-api-five.vercel.app/api/cart';
-async function addToCart(productId) {
-    const response = await fetch(`${apiUrl}`, {
+/** 장바구니에 상품 추가 */
+async function addToCart(product) {
+    const response = await fetch(`/api/cart`, {
         method: 'POST',
-        body: JSON.stringify({ id: productId }),
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(product),
     });
+    
     if (!response.ok) {
-        console.log(response);
         throw new Error('장바구니 담기 실패');
     }
+    
     const data = await response.json();
     return data;
 }
 
 /** 장바구니 버튼 클라이언트 컴포넌트 */
-export default function CartButton({ productId }) {
+export default function CartButton({ product }) {
     const router = useRouter();
 
     const addProductToCart = async () => {
+        if (!product) {
+            alert('상품 정보가 없습니다.');
+            return;
+        }
 
         try {
-            await addToCart(productId);
+            await addToCart(product);
             alert('장바구니에 담겼습니다.');
             router.push('/cart');
         } catch (error) {
+            console.error('장바구니 담기 오류:', error);
             alert('장바구니 담기 실패했습니다.');
         }
     };

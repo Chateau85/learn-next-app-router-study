@@ -2,7 +2,6 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import CartButton from "./CartButton";
 
-
 const apiUrl = 'https://app-router-api-five.vercel.app/api/products';
 
 async function fetchProduct(id) {
@@ -17,19 +16,6 @@ export default async function ProductDetail({ params }) {
     const { id } = await params;
     const product = await fetchProduct(id);
     
-    // useEffect(() => {
-    //     fetchProduct(id).then(data => {
-    //         setProduct(data);
-    //         setLoading(false);
-    //     }).catch(error => {
-    //         console.error('에러가 발생했습니다.', error);
-    //     });
-    // }, [product]);
-
-    // if(loading) {
-    //     return <div>로딩중...</div>
-    // }
-
     return (
         <div className={styles.container}>
             <div className={styles.productDetailWrapper}>
@@ -60,7 +46,7 @@ export default async function ProductDetail({ params }) {
                     
                     {/* 장바구니 버튼 영역 */}
                     <div className={styles.actionSection}>
-                        <CartButton productId={id} />
+                        <CartButton product={product} />
                     </div>
                 </div>
             </div>

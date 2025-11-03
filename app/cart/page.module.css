@@ -92,6 +92,30 @@
   color: #2563eb;
 }
 
+/* 삭제 버튼 */
+.deleteButton {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #ef4444;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.deleteButton:hover {
+  background-color: #dc2626;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+}
+
+.deleteButton:active {
+  transform: translateY(0);
+}
+
 /* 총합 정보 섹션 */
 .summarySection {
   background-color: var(--foreground);
