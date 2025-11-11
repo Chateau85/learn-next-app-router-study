@@ -9,6 +9,19 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
+/server/node_modules
+/server/package-lock.json
+/server/package.json
+/server/index.js
+/server/server.js
+/server/server.js
+/_skbiotechppt
+/_skbiotechppt/node_modules
+/_skbiotechppt/package-lock.json
+/_skbiotechppt/package.json
+/_skbiotechppt/index.js
+/_skbiotechppt/server.js
+/_skbiotechppt/server.js
 
 # testing
 /coverage

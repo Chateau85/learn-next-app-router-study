@@ -20,3 +20,10 @@
   background-color: blue;
   font-weight: bold;
 }
+
+.activeLink {
+  background-color: #1e90ff;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 0 8px rgba(30, 144, 255, 0.5);
+}
