@@ -46,7 +46,7 @@ export default async function ProductDetail({ params }) {
                     
                     {/* 장바구니 버튼 영역 */}
                     <div className={styles.actionSection}>
-                        <CartButton product={product} />
+                        <CartButton product={id} />
                     </div>
                 </div>
             </div>

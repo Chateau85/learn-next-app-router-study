@@ -2,13 +2,12 @@
 import styles from './page.module.css';
 import CartList from './components/CartList';
 import CartSummary from './components/CartSummary';
+import { headers } from 'next/headers';
 
 const apiUrl = 'https://app-router-api-five.vercel.app/api/cart';
 
 async function fetchCart() {
-    const response = await fetch(apiUrl, {
-        cache: 'no-store', // 서버에서 항상 최신 데이터 가져오기
-    });
+    const response = await fetch(apiUrl, { cache: 'no-store' });
     const data = await response.json();
     return data;
 }
@@ -20,8 +19,10 @@ async function fetchCart() {
  * - 장바구니 페이지 하단에는 총 상품 개수와 가격이 표시된다
  */
 export default async function CartPage() {
+    const headersList = await headers();
+    const userAgent = headersList.get('user-agent');
+    console.log(userAgent);
     const cart = await fetchCart();
-    console.log(cart);
 
     return (
         <div className={styles.container}>
