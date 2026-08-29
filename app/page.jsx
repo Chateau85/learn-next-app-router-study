@@ -5,15 +5,22 @@ import Link from "next/link";
 const apiUrl = 'https://app-router-api-five.vercel.app/api/products';
 
 async function fetchProducts() {
-    const response = await fetch(apiUrl);
-    const data = await response.json();
-    return data;
+    try {
+        const response = await fetch(apiUrl, { next: { revalidate: 300 } });
+        if (!response.ok) {
+            return [];
+        }
+
+        const data = await response.json();
+        return Array.isArray(data) ? data : [];
+    } catch {
+        return [];
+    }
 }
 
 /** 상품 목록 페이지 */
 export default async function ProductListPage() {
     const products = await fetchProducts();
-    console.log(products);
     return (
         <div className={styles.container}>
             <h1 className={styles.title}>상품 목록 페이지</h1>
@@ -37,6 +44,9 @@ export default async function ProductListPage() {
                     </li>
                 ))}
             </ul>
+            {products.length === 0 && (
+                <p>상품 정보를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.</p>
+            )}
         </div>
     );
 }
